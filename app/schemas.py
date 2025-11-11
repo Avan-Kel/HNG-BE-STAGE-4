@@ -6,7 +6,7 @@ from uuid import UUID
 # Template creation model
 # --------------------------
 class TemplateCreate(BaseModel):
-    code: str
+    template_code: str
     version: int
     subject: str
     body: str
@@ -17,7 +17,7 @@ class TemplateCreate(BaseModel):
 # --------------------------
 class TemplateResponse(BaseModel):
     id: str
-    code: str
+    template_code: str
     version: int
     subject: str
     body: str

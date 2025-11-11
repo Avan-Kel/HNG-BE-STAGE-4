@@ -7,7 +7,7 @@ class Template(Base):
     __tablename__ = "templates"
 
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
-    code = Column(String, nullable=False)
+    template_code = Column(String, nullable=False)
     version = Column(Integer, nullable=False)
     subject = Column(String)
     body = Column(String)
