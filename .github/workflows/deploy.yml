@@ -1,0 +1,41 @@
+name: Deploy Template Service
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Railway
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out code from repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Python (FastAPI runs on python)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # OPTIONAL – skip if not needed
+      - name: Run tests
+        run: |
+          echo "No tests configured"
+
+      # Deploy to Railway
+      - name: Deploy to Railway
+        uses: railwayapp/railway-deploy@v1
+        with:
+          projectId: ${{ secrets.RAILWAY_PROJECT_ID }}
+          serviceId: ${{ secrets.RAILWAY_SERVICE_ID }}
+          apiToken: ${{ secrets.RAILWAY_API_TOKEN }}
